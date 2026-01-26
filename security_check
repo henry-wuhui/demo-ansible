@@ -1,0 +1,21 @@
+- name: List security patches on Ubuntu 22.04
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      changed_when: false
+
+    - name: List security updates
+      ansible.builtin.shell: |
+        apt list --upgradable 2>/dev/null | grep jammy-security || true
+      register: security_updates
+      changed_when: false
+
+    - name: Show security updates
+      ansible.builtin.debug:
+        msg: |
+          Security updates available:
+          {{ security_updates.stdout_lines | default(['None']) }}
