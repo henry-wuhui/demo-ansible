@@ -1,2 +1,2 @@
 [bjo-test]
-10.204.7.251
+10.204.7.251 ansible_user=bjo_test
