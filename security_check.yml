@@ -1,5 +1,5 @@
-- name: List security patches on Ubuntu 22.04
-  hosts: all
+- name: List security patches on Ubuntu
+  hosts: bjo-test
   become: yes
   tasks:
     - name: Update apt cache
@@ -18,4 +18,23 @@
       ansible.builtin.debug:
         msg: |
           Security updates available:
-          {{ security_updates.stdout_lines | default(['None']) }}
+          {% if security_updates.stdout_lines | length > 0 %}
+          {{ security_updates.stdout_lines }}
+          {% else %}
+          None
+          {% endif %}
+
+    - name: Send security patch collection to user
+      mail:
+        host: mail.dolby.com
+        port: 25
+        sender: security-update-check@dolby.com
+        to: huwu@dolby.com
+        subject: "Security patches for {{ inventory_hostname }}"
+        body: |
+          {% if security_updates.stdout_lines | length > 0 %}
+          Available security updates for {{ inventory_hostname }}:
+          {{ security_updates.stdout_lines }}
+          {% else %}
+          No security update available for {{ inventory_hostname }}.
+          {% endif %}
