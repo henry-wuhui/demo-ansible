@@ -25,7 +25,7 @@
           {% endif %}
 
     - name: Send security patch collection to user
-      mail:
+      community.general.mail:
         host: mail.dolby.com
         port: 25
         sender: security-update-check@dolby.com
