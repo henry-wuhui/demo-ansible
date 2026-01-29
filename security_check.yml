@@ -18,6 +18,8 @@
       ansible.builtin.debug:
         msg: |
           Security updates available:
+
+          
           {% if security_updates.stdout_lines | length > 0 %}
           {{ security_updates.stdout_lines }}
           {% else %}
