@@ -1,5 +1,5 @@
 - name: List security patches on Ubuntu
-  hosts: bjo-test
+  hosts: syd
   become: yes
   tasks:
     - name: Update apt cache
