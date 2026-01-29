@@ -35,6 +35,7 @@
           {% if security_updates.stdout_lines | length > 0 %}
           Available security updates for {{ inventory_hostname }}:
           
+          
           {{ security_updates.stdout_lines }}
           {% else %}
           No security update available for {{ inventory_hostname }}.
