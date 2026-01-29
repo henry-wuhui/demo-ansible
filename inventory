@@ -1,2 +1,4 @@
 [bjo-test]
 10.204.7.251 ansible_user=bjo_test
+[syd]
+10.204.66.247 ansible_user=dolbyit
