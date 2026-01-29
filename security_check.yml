@@ -10,7 +10,7 @@
 
     - name: List security updates
       ansible.builtin.shell: |
-        apt list --upgradable 2>/dev/null | grep jammy-security || true
+        apt list --upgradable 2>/dev/null | grep security || true
       register: security_updates
       changed_when: false
 
