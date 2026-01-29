@@ -17,9 +17,7 @@
     - name: Show security updates
       ansible.builtin.debug:
         msg: |
-          Security updates available:
-
-          
+          Security updates available:   
           {% if security_updates.stdout_lines | length > 0 %}
           {{ security_updates.stdout_lines }}
           {% else %}
@@ -36,6 +34,7 @@
         body: |
           {% if security_updates.stdout_lines | length > 0 %}
           Available security updates for {{ inventory_hostname }}:
+          
           {{ security_updates.stdout_lines }}
           {% else %}
           No security update available for {{ inventory_hostname }}.
