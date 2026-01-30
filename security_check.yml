@@ -29,7 +29,7 @@
         host: mail.dolby.com
         port: 25
         sender: security-update-check@dolby.com
-        to: huwu@dolby.com
+        to: huwu@dolby.com,Michael.Roperti@dolby.com
         subject: "Security patches for {{ inventory_hostname }}"
         body: |
           {% if security_updates.stdout_lines | length > 0 %}
